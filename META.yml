@@ -1,0 +1,22 @@
+---
+abstract: 'load IO::Async::Loop::AnyEvent'
+author:
+  - 'Lukas Mai <l.mai@web.de>'
+build_requires:
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112621'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: IO-Async-Loop-AnyEvent2-ElectricBoogaloo
+requires:
+  AnyEvent: 6
+  IO::Async::Loop::AnyEvent: 0
+  parent: 0
+  strict: 0
+  warnings: 0
+version: 0.001
