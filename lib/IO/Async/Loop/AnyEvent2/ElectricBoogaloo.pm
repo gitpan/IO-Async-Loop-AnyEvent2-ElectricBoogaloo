@@ -11,7 +11,7 @@ IO::Async::Loop::AnyEvent2::ElectricBoogaloo - load IO::Async::Loop::AnyEvent
 
 =head1 DESCRIPTION
 
-This module lets you load IO::Async::Loop::AnyEvent with AnyEvent 6.1.
+This module lets you load IO::Async::Loop::AnyEvent with AnyEvent 6.1/6.11.
 
 =head1 SEE ALSO
 
@@ -38,7 +38,7 @@ See L<http://dev.perl.org/licenses/> for more information.
 ; use warnings
 ; use strict
 
-; *VERSION = \'0.001'
+; *VERSION = \'0.002'
 
 ; use AnyEvent
     (
@@ -46,15 +46,17 @@ See L<http://dev.perl.org/licenses/> for more information.
 ; BEGIN
     { my $AE_log = \&AnyEvent::log
     ; no warnings qw
-    	( redefine
-    	)
+        ( redefine
+        )
     ; *AnyEvent::log = sub
-    	( $$
-    	; @
-    	)
+        ( $$
+        ; @
+        )
         { if
             ( $_[0] eq 'fatal'
-           && $_[1] eq "AnyEvent: IO::Async::Loop::AnyEvent detected - this module is broken by design,\nabuses internals and breaks AnyEvent, will not continue."
+           && ( $_[1] eq "AnyEvent: IO::Async::Loop::AnyEvent detected - this module is broken by design,\nabuses internals and breaks AnyEvent, will not continue."
+             || $_[1] eq "AnyEvent: IO::Async::Loop::AnyEvent detected - that module is broken by\ndesign, abuses internals and breaks AnyEvent - will not continue."
+              )
             )
             { return "no :)"
             }
